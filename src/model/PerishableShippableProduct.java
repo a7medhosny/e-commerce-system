@@ -1,6 +1,6 @@
 package model;
 import util.Shippable;
-public abstract class PerishableShippableProduct extends Product implements Shippable {
+public  class PerishableShippableProduct extends Product implements Shippable {
     final private boolean expired;
     final private double weight;
 

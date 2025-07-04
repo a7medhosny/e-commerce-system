@@ -10,7 +10,7 @@ import java.util.*;
 public class CheckoutService {
     public static void checkout(Customer customer, Cart cart) {
         if (cart.isEmpty()) {
-            throw new IllegalArgumentException("data.Cart is empty. Please add items before checking out.");
+            throw new IllegalArgumentException("Cart is empty. Please add items before checking out.");
         }
 
         double subtotal = 0;
@@ -20,7 +20,7 @@ public class CheckoutService {
             Product p = item.getProduct();
 
             if (p.isExpired()) {
-                throw new IllegalArgumentException("Model.Product \"" + p.getName() + "\" is expired and cannot be purchased.");
+                throw new IllegalArgumentException("Product \"" + p.getName() + "\" is expired and cannot be purchased.");
             }
 
             if (item.getQuantity() > p.getQuantity()) {
@@ -41,7 +41,7 @@ public class CheckoutService {
         double total = subtotal + shipping;
 
         if (customer.getBalance() < total) {
-            throw new IllegalArgumentException("Model.Customer balance is insufficient. Required amount: " + total);
+            throw new IllegalArgumentException("Customer balance is insufficient. Required amount: " + total);
         }
 
         if (!shippablesMap.isEmpty()) {
