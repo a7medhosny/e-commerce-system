@@ -3,23 +3,22 @@
 
 This project is a simple object-oriented e-commerce system built in Java, designed as part of the Fawry Full Stack Internship Challenge.
 
-It simulates a shopping experience with products, a shopping cart, and a checkout process. It demonstrates proper use of object-oriented principles, error handling, inheritance, interfaces, and clean code architecture.
+It simulates a shopping experience with different product types, a shopping cart, and a checkout process. It demonstrates proper use of object-oriented principles, error handling, interfaces, and clean architecture, using only two generic product classes.
 
 ---
 
 ## 📌 Features
 
-- Define multiple types of products (e.g., Cheese, Scratch Cards, Biscuits).
-- Handle different product behaviors:
-  - Some products **expire**.
-  - Some require **shipping** (with weight).
+- Two generic product types:
+  - `PerishableShippableProduct`: products that expire and require shipping (e.g., Cheese, Biscuits).
+  - `SimpleProduct`: basic products that do not expire or require shipping (e.g., Scratch Cards).
 - Customers can:
-  - Add products to a cart (limited by available stock).
-  - Checkout with full receipt and shipping summary.
-- Handles shipping via a service class with an interface (`Shippable`).
-- Graceful error handling for:
+  - Add products to their cart with specified quantity.
+  - Checkout to see a full receipt and shipping summary.
+- Shipping handled through a dedicated `ShippingService` with `Shippable` interface.
+- Error handling for:
   - Expired products
-  - Out-of-stock items
+  - Insufficient stock
   - Empty cart
   - Insufficient customer balance
 
@@ -30,10 +29,13 @@ It simulates a shopping experience with products, a shopping cart, and a checkou
 ```
 src/
 ├── data/              # Cart and cart-related classes
-├── model/             # Product models and customer
-├── service/           # Business logic: checkout, shipping
-├── util/              # Interfaces and utility helpers
-└── Main.java          # Entry point with all test cases
+├── model/             # Generic product classes and customer
+│   ├── Product.java
+│   ├── PerishableShippableProduct.java
+│   └── SimpleProduct.java
+├── service/           # Business logic: checkout and shipping
+├── util/              # Interfaces and shared logic
+└── Main.java          # Entry point with all test scenarios
 ```
 
 ---
@@ -42,10 +44,10 @@ src/
 
 1. Clone or download the project.
 2. Open it in any Java IDE (IntelliJ, VS Code...).
-3. Make sure your JDK is installed (Java 8+ recommended).
+3. Ensure JDK 8+ is installed.
 4. Run the `Main.java` file.
 
-You will see the output of different checkout scenarios printed to the console.
+Console will display output for all test cases.
 
 ---
 
@@ -53,11 +55,11 @@ You will see the output of different checkout scenarios printed to the console.
 
 | Case | Description |
 |------|-------------|
-| ✅ Successful checkout | All items valid, customer has enough balance |
-| ❌ Empty cart | Throws error when checkout is attempted with no items |
-| ❌ Expired product | Error if product is expired |
+| ✅ Successful checkout | All items are valid, with enough balance |
+| ❌ Empty cart | Throws error when trying to checkout with no items |
+| ❌ Expired product | Error when attempting to purchase expired product |
 | ❌ Quantity exceeds stock | Cannot add more than available quantity |
-| ❌ Insufficient balance | Customer balance is less than total required |
+| ❌ Insufficient balance | Total price exceeds customer balance |
 
 ---
 
@@ -66,15 +68,18 @@ You will see the output of different checkout scenarios printed to the console.
 ```
 ** Shipment notice **
 2x Cheese     400.0g
-Total package weight 0.4kg
+1x Biscuits   700.0g
+Total package weight 1.1kg
 
 ** Checkout receipt **
 2x Cheese     200.0
+1x Biscuits   150.0
+1x Scratch Card     50.0
 ----------------------
-Subtotal         200.0
+Subtotal         400.0
 Shipping         30.0
-Total Amount     230.0
-Remaining Balance: 270.0
+Total Amount     430.0
+Remaining Balance: 4570.0
 ```
 
 ---
@@ -83,17 +88,18 @@ Remaining Balance: 270.0
 
 - Object-Oriented Programming (OOP)
   - Inheritance
-  - Abstraction
   - Encapsulation
+  - Abstraction
   - Polymorphism
 - Interfaces (`Shippable`)
-- Separation of concerns (`model`, `service`, `data`, `util`)
-- Exception handling with meaningful messages
-- Clean, readable and testable Java code
+- Clean separation of concerns (`model`, `service`, `data`, `util`)
+- Structured error handling with meaningful feedback
+- Minimal and scalable class design (only two product types)
 
 ---
 
 ## 👨‍💻 Author
 
 - **Ahmed Hosny**
-- Designed for Fawry Internship Technical Evaluation – July 2025
+- Submitted for Fawry Internship Technical Evaluation – July 2025
+
