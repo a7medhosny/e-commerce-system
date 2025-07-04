@@ -13,8 +13,8 @@ public class Main {
         Customer customer1 = new Customer("Ahmed", 5000);
         Cart cart1 = new Cart();
         try {
-            Product cheese = new PerishableShippableProduct("Cheese", 100, 5, false, 200) {};
-            Product biscuits = new PerishableShippableProduct("Biscuits", 150, 10, false, 700) {};
+            Product cheese = new PerishableShippableProduct("Cheese", 100, 5, false, 200);
+            Product biscuits = new PerishableShippableProduct("Biscuits", 150, 10, false, 700);
             Product card = new SimpleProduct("Scratch Card", 50, 10);
 
             cart1.add(cheese, 2);
@@ -41,7 +41,7 @@ public class Main {
         Customer customer3 = new Customer("Omar", 400);
         Cart cart3 = new Cart();
         try {
-            Product expiredCheese = new PerishableShippableProduct("Old Cheese", 80, 2, true, 150) {};
+            Product expiredCheese = new PerishableShippableProduct("Old Cheese", 80, 2, true, 150);
             cart3.add(expiredCheese, 1);
             CheckoutService.checkout(customer3, cart3);
         } catch (IllegalArgumentException e) {
@@ -53,7 +53,7 @@ public class Main {
         Customer customer4 = new Customer("Mostafa", 300);
         Cart cart4 = new Cart();
         try {
-            Product cheese = new PerishableShippableProduct("Cheese", 100, 2, false, 200) {};
+            Product cheese = new PerishableShippableProduct("Cheese", 100, 2, false, 200);
             cart4.add(cheese, 5); // asking for more than available
         } catch (IllegalArgumentException e) {
             System.out.println("Error while adding item to cart: " + e.getMessage());
@@ -64,7 +64,7 @@ public class Main {
         Customer customer5 = new Customer("Ali", 100);
         Cart cart5 = new Cart();
         try {
-            Product cheese = new PerishableShippableProduct("Cheese", 100, 5, false, 200) {};
+            Product cheese = new PerishableShippableProduct("Cheese", 100, 5, false, 200);
             cart5.add(cheese, 3); // total = 300 + shipping
 
             CheckoutService.checkout(customer5, cart5);
